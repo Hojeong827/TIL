@@ -35,6 +35,7 @@
 ## Exercise 1-39: 1 부터 100까지의 합 구하기
 * [exercise1-39](https://github.com/Hojeong827/TIL/blob/main/Python/basic/code/exercise1-39.py)  
     For loop와 range() 를 이용하여 1부터 100까지의 합을 구하는 코드 구현   
+    * for i in range(5) => i 에 0, 1, 2, 3, 4 가 들어가게 되고 이는 5번 반복한다는 뜻이 된다.
 
 ## Exercise 1-40: 1 부터 100까지의 List 만들기
 * [exercise1-40](https://github.com/Hojeong827/TIL/blob/main/Python/basic/code/exercise1-40.py)  
