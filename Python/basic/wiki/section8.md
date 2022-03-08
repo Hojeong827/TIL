@@ -10,8 +10,8 @@
 ## Exercise 1-46: Mean Substraction(3)
 * [exercise1-46](https://github.com/Hojeong827/TIL/blob/main/Python/basic/code/exercise1-46.py)  
     exercise 1-45 에서 구한 평균과 For loop 를 이용하여서 Mean Substraction 을 하는 코드 구현
-    * list() 와 append() 함수를 이용하여서 Mean substraction을 하는 방법
-    * scores의 위치값(index)를 이용하여서 Mean substraction을 하는 방법   
+    * method 1: list() 와 append() 함수를 이용하여서 Mean substraction을 하는 방법
+    * method 2: scores의 위치값(index)를 이용하여서 Mean substraction을 하는 방법   
       두번째 방법이 불필요한 메모리를 차지하지 않기 때문에 조금더 효율적이라 생각함
 
 ## Exercise 1-47: 두 과목의 평균 구하기
