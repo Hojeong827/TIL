@@ -10,7 +10,8 @@
 
 ## Exercise 1-24: 수학점수들의 평균 구하기(2)
 * [exercise1-24](https://github.com/Hojeong827/TIL/blob/main/Python/basic/code/exercise1-24.py)  
-    List 를 이용하여 수학점수의 평균을 구하는 코드 구현
+    List 를 이용하여 수학점수의 평균을 구하는 코드 구현   
+    len() : 배열의 크기를 나타내는 함수
 
 ## Exercise 1-25: Mean Substraction(2)
 * [exercise1-25](https://github.com/Hojeong827/TIL/blob/main/Python/basic/code/exercise1-25.py)  
