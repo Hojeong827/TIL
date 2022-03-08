@@ -14,4 +14,4 @@ print(score_ms)
 # method.2
 for score_idx in range(len(scores)):
     scores[score_idx] -= score_mean
-print(score_ms)
+print(scores)
