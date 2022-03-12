@@ -38,7 +38,7 @@ for class_idx in range(n_class):
 # classes' standard deviations
 print("standard deviations: ", class_socre_stds)
 
-for student_idx in range(n_studnet):
+for student_idx in range(n_studnet):                        
     for class_idx in range(n_class):
         score=scores[student_idx][class_idx]
         mean = class_score_means[class_idx]
@@ -46,7 +46,7 @@ for student_idx in range(n_studnet):
         
         scores[student_idx][class_idx] = (score-mean)/std
         
-class_score_sums=list()
+class_score_sums=list()                         # 여기서부터는 위에서 한 작업 반복
 class_score_means = list()
 class_score_square_sums = list()
 
