@@ -12,7 +12,8 @@
 * [exercise1-94](https://github.com/Hojeong827/TIL/blob/main/Python/basic/code/exercise1-95.py)  
     2차원 list를 이용하여 One-hot Encoding을 구하는 코드 구현
     * One-hot Encoding : 단어 집합의 크기를 벡터의 차원으로 하고, 표현하고 싶은 단어의 인덱스에 1의 값을 부여하고, 다른 인덱스에는 0을 부여하는 단어의 벡터 표현 방식이다.    
-    이렇게 표현된 벡터를 One-hot Vecotr라고 한다.   
+    이렇게 표현된 벡터를 One-hot Vecotr라고 한다.  
+    * [One-hot Encoding](https://wikidocs.net/22647) 
     <pre><code>
     이름 = [쥐, 소, 호랑이] => one_hot_vec = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
     이름 = [쥐, 소, 호랑이, 토끼] => one_hot_vec = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
