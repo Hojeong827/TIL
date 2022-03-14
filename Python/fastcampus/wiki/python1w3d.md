@@ -114,3 +114,29 @@ data = {
 print(func(1,**data))                     # func(1, num2=100, num3=200)
 301
 </code></pre>
+
+## Docstring
+* 함수의 설명을 작성하는데 쓰인다.
+<pre><code>
+def echo(msg):
+    "echo print msg"                    # func바로 밑에 문장에서 ""를 이용하여서 함수의 설명을 작성한다
+    print(msg)
+
+help(echo)
+print(echo.__doc__)
+
+def echo(msg):
+    """
+    echo func return its input argument         # 한 문장이 아니라 여러 문장이 필요하다면 """ 을 이용
+    The operation is:
+        1. print msg parameter
+        2. return msg parameter
+    parameter : msg : str
+    return msg
+    """
+    print(msg)
+    return msg
+
+help(echo)
+print(echo.__doc__)
+</coe></pre>
