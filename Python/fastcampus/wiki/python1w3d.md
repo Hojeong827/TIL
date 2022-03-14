@@ -88,8 +88,7 @@ def plus(*args, **kwargs):
     print(type(kwargs), kwargs)
     return sum(args)+sum(list(kwargs.values()))     # kwargs는 데이터 값이 dict이기에 key값들의 value들을 list로 만들어야함
 
-a=plus(1,2,3,4,5, num1=6, num2=7)
-print(a)
+print(plus(1,2,3,4,5, num1=6, num2=7))
 
 class 'tuple' (1,2,3,4,5)                           # args의 데이터 타입은 tuple이고 (1,2,3,4,5)가 모두 들어있다.
 class 'dict' {'num1': 6, 'num2': 7{}}
@@ -102,5 +101,16 @@ def func(num1, num2, num3):
     return num1+num2+num3
 
 data=[1,2,3]
-print(func(*data))
+print(func(*data))                        # list의 데이터를 하나씩 argument로 호출한다는 뜻!  == func(1,2,3)
+6
+
+print(func(data))                         # num1에 data라는 list의 값이 모두 들어가기 때문에 num2와 num3는 값이 비게 된다. 
+                                            => 에러 발생! == func([1,2,3])
+
+data = {
+    "num2": 100,
+    "num3": 200,
+}
+print(func(1,**data))                     # func(1, num2=100, num3=200)
+301
 </code></pre>
