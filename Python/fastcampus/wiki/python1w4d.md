@@ -150,3 +150,52 @@ def b():
 *[exercise1](https://github.com/Hojeong827/TIL/blob/main/Python/fastcampus/code/1w4d_exercise2.py)   
 *[exercise2](https://github.com/Hojeong827/TIL/blob/main/Python/fastcampus/code/1w4d_exercise3.py)   
 *[exercise3](https://github.com/Hojeong827/TIL/blob/main/Python/fastcampus/code/1w4d_exercise4.py)   
+
+## Class : 클래스
+* 변수와 함수를 묶어 놓은 개념
+* 사용 방법
+    1. 변수와 함수가 들어있는 클래스 선언
+    2. 클래스를 객체로 만들어서 클래스 안에 선언된 변수와 함수를 사용
+<pre><code>
+* 클래스의 선언
+class Calculator:       # 클래스는 첫문자를 대문자로 하는 것이 일반적
+    num1=1
+    num2=2
+
+    def plus(self):
+        return self.num1+self.num2
+
+    def minus():
+        return self.mun1-self.num2
+
+    def plus():
+        pass            # pass 는 함수 선언시 안에 내용이 아무 것도 없으면 error가 발생하는데 이를 넘기기 위한 명령어
+
+* 클래스의 사용
+calc = Calculator()     # calc 라는 변수에 Calculator 라는 클래스의 객체가 생성
+calc.num1               # calc라는 객체 안의 num1 을 출력
+1
+calc.num2               # calc라는 객체 안의 num2 를 출력
+2
+calc.plus()             # calc라는 객체 안의 plus() 함수 실행
+3
+calc.minus              # calc라는 객체 안의 minus() 함수 실행
+-1
+calc.num1 = 10          # calc라는 객체 안의 num1 이 10 으로 바뀜
+</code></pre>  
+
+<pre><code>
+def plus(self):   
+    return self.num1+self.num2   
+</code></pre>
+* self 의 의미 : 객체(object) 자신   
+우리가 calc2를 Calculator() 라는 클래스로 객체 선언을 하였는데 Class 안의 코드를 살펴보면 위와 같은 코드를 볼 수 있다.   
+이를 우리가 calc.plus()로 호출하였을 때 앞서 말했듯이 sefl 의 의미가 객체 자신이라고 하였기 때문에 객체 = calc   
+즉, ***self.num1+self.num2  ==  calc.num1+calc.num2*** 라는 의미 이다.   
+calc.num1=1이고 calc.num2=2이기 때문에 1+2=3 이라는 값을 return 받은 것이다.   
+
+## 객체(Object) 지향
+* 실제 세계를 코드에 반영해서 개발하는 방법
+* 여러명의 개발자가 코드를 효율적으로 작성해서 프로젝트를 완성시키기 위한 방법
+* 설계도 작성(Class) -> 실제 물건(Object)
+* 사용자 정의 데이터 타입
