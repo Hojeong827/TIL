@@ -147,6 +147,6 @@ def a():
 def b():
     code_4
 </code></pre>
-*[exercise1]()   
-*[exercise2]()   
-*[exercise3]()   
+*[exercise1](https://github.com/Hojeong827/TIL/blob/main/Python/fastcampus/code/1w4d_exercise2.py)   
+*[exercise2](https://github.com/Hojeong827/TIL/blob/main/Python/fastcampus/code/1w4d_exercise3.py)   
+*[exercise3](https://github.com/Hojeong827/TIL/blob/main/Python/fastcampus/code/1w4d_exercise4.py)   
