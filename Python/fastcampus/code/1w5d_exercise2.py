@@ -1,7 +1,8 @@
-# 스타크래프트의 마린을 클래스로 설계
-# 체력(health : 40), 공격력(attack_pow : 5), 공격(attack())
+# 스타크래프트의 마린과 메딕을 클래스로 설계
+# 마린 : 체력(health : 40), 공격력(attack_pow : 5), 공격(attack())
+# 메딕 : 체략(health : 50), 힐량(heal_pow : 6), 힐(unit())
 # 마린 클래스로 마린 객체 2개를 생성해서 마린 1이 마린 2를 공격하는 코드를 작성
-# attack(self, unit)
+# attack(self, unit), heal(self, unit)
 class Marine:
     
     def __init__(self):
