@@ -24,9 +24,8 @@ class Galuxy:
     def show_img(self):
         print("show img")
 
-class DssPhone(Iphone3, Galuxy):
+class DssPhone(Iphone3, Galuxy):            # 다중 상속
     def camera(self):
         print("camera")
 
 dss_phone = DssPhone()
-[func for func in dir(dss_phone) if func[:2] !="__"]
