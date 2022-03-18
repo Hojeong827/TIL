@@ -118,3 +118,38 @@
 
 - 패키지 설치(터미널에서 실행) : school $ python setup.py develop   
 - 패키지 제거(터미널에서 실행) : pip unistall dss   
+
+## 예외 처리
+* 코드를 실행중에 에러가 발생한 경우 에러를 처리하는 방법
+* try, except, finally, raise
+<pre><code>
+# tyr, except : error 가 발생해도 코드를 중단하지 않고 계속적으로 실행하고 싶을 때 사용
+ls = [1, 2, 3]
+print(ls[3])                            # error 발생                
+print("Done!")                          # Done 이 출력되지 않고 종료됨
+
+---------------------------------------
+try:                                    # try 부분에서 error 가 발생했을 때 except 코드가 실행됨
+    print(ls[3])
+except Exception as e:
+    print("error")
+    print(e)                            # error 에대한 설명을 출력, 그 후 Done 출력
+print("Done")
+
+# finally : try, except 구문이 실행된 후 finally 구문이 실행
+try:
+    1/0                                 # 에러 발생
+except:                                 # except 구문 실행
+    print("error")
+finally:                                # except 가 실행된 후 finally 실행 (try가 참이고 except 가 실행되지 않아도 실행됨)
+    print("Done")
+
+# raise : 강제로 error 를 발생시키는 명령
+try:
+    1/0                                 # 에러 발생
+except Exception as e:
+    print("error")
+    raise(e)                            # 강제적으로 error 발생, 그 후 Done 출력하지 않음
+
+print("Done")
+</code></pre>
