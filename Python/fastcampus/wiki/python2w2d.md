@@ -153,3 +153,56 @@ except Exception as e:
 
 print("Done")
 </code></pre>
+
+## Numpy
+* 행렬 데이터 생성, 수정, 계산등을 빠르게 처리해 주는 패키지
+* 특징
+    1. C, C++, 포트란으로 작성됨
+    2. 선형대수학을 빠르게 연산 : 스칼라, 벡터, 메트릭스
+    3. 사용하기 위해서 : import numpy as np
+
+* 행렬 데이터 생성
+* ndarray : 한가지 데이터 타입만 값으로 사용이 가능!
+<pre><code>
+array = np.array([1,2,3])
+print(type(array), array)                  # (numpy.ndarray, array([1, 2, 3]) => 1차원 행렬
+
+array2 = np.array(
+    [[1, 2, 3],
+    [4, 5, 6]],]
+)
+print(array2, array2.ndim, array2.shape)            # (array([[1, 2, 3],[4, 5, 6]]), 2, (2, 3))
+
+* 행렬의 모양(shape) 변경하기 : reshape
+array2.reshape(3, 2)                    # array([1, 2], [3, 4], [5, 6])
+array2.reshape(6)                       # array([1, 2, 3, 4, 5, 6])
+
+* 행렬 데이터의 선택 : offset index : masking
+array2[1]                               # array([4,5,6])
+array2[1][2]                            # 6, 이는 array2[1, 2] 와도 같은 표현
+array2[1][:2]                           # array([4, 5])
+array2[2][::-1]                         # array([6, 5, 4])
+
+* 행렬 데이터 수정
+array2[1][2]=10                         # array([1, 2, 3], [4, 5, 10])
+array2[0]=0                             # array([0, 0, 0], [4, 5, 10])  : 브로드 캐스팅
+array2[0] = [7, 8, 9]                   # array([7, 8, 9], [4, 5, 10])
+
+* 조건으로 선택
+array2 > 7                              
+idx = array2 > 7
+print(idx)                              # array([False, True, True], [False, False, True])
+print(array2[idx])                      # array([8, 9, 10]) : 조건에 참인 부분만 출력
+araay2[idx] = 100                       # array([7, 100, 100], [4, 5, 100])
+
+* 행렬 데이터의 생성 2
+data = np.zeros((2,3))
+print(data)                             # array([0., 0., 0.], [0., 0., 0.]) : data type 이 flaot
+data2 = data.astype("int")              # float type을 int형으로 변경
+
+* arrange
+np.arrange(5)                           # array([0, 1, 2, 3, 4])
+np.arrange(5,10)                        # array([5, 6, 7, 8, 9])
+np.arrange(5, 10, 2)                    # array([5, 7, 9])
+</code></pre>
+
