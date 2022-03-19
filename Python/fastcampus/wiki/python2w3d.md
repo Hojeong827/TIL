@@ -61,3 +61,49 @@ variance(p_data1)                               # Wall time: 2.94ms  =>  일반�
 * 상관계수의 제곰 (상관계수를 양수화)
 * 수치가 클 수록 회기분석을 통해 예측할 수 있는 수치의 정도가 더 정확
 * np.corrcoef(data1, data2)[0, 1]**2
+
+## linspace, logspace 함수
+* linspace : 설정한 범위에서 선형적으로 분할한 위치의 값을 출력   
+=> np.linspace(0, 100, 5)       :           array([ 0., 25., 50., 75., 100.])
+* logspace : 설정한 범위에서 로그로 분할한 위치의 값을 출력   
+=> np.logspace(2, 4, 3)         :           array([ 100., 1000., 10000.])
+
+## numpy random
+* seed : 랜덤값의 설정값
+* rand : 0 에서 1 사이의 균등분포로 난수를 발생
+* randn : 0에 가까운 정규분포로 난수를 발생
+* randint : 균등분포로 정수값을 발생
+* suffle : 행렬 데이터를 섞어 줍니다.
+* choice : 특정 확률로 데이터를 선택
+* unique : 어떤 원소가 나왔는지와 그 원소들이 몇번 반복되었는지 알기 위한 함수
+
+## 행렬 데이터의 결합
+* concatenate
+<pre><code>
+na1 = np.random.randint(10, size=(2,3))         # array([[3, 0, 0], [5, 7, 5]])
+na2 = np.random.randint(10, size=(3,2))         # array([[0, 8], [6, 5], [1, 7]])
+na3 = np.random.randint(10, size=(3,3))         # array([[4, 3, 6], [1, 4, 0], [8, 5, 4]])
+
+# 세로 결합
+np.concatenate((na1, na3))                      # na1 과 na2는 배열크기가 다르기 때문에 불가
+=> array([[3, 0, 0], 
+          [5, 7, 5], 
+          [4, 3, 6], 
+          [1, 4, 0], 
+          [8, 5, 4]])
+
+# 가로 결합
+np.concatenate((na2, na3), axis=1
+=> array([0, 8, 4, 3, 6], 
+         [6, 5, 1, 4, 0], 
+         [1, 7, 8, 5, 4]]))
+
+# c_, r_                                        # column, row
+np.c_[np,array([1, 2, 3]), np,array([4, 5, 6])]
+=> array([[1, 4],
+          [2, 5],
+          [3, 6]])
+
+np.r_[np,array([1, 2, 3]), np,array([4, 5, 6])]
+=> array([1, 2, 3, 4, 5, 6])
+</code></pre>
