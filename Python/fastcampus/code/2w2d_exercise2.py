@@ -11,5 +11,5 @@ def input_number(num):
         raise LowNumber()
     print(num)
 
-input_number(12)
-input_number(8)
+input_number(12)            # 12 출력
+input_number(8)             # 강제적으로 error 발생 됨
