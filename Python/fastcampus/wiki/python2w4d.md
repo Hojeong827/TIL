@@ -137,7 +137,7 @@ df.head(2)                                          # 위에서부터 2개를 �
 df.tail(2)                                          # 밑에서부터 2개를 출력
 </code></pre>
 
-## Apply 홤수
+## Apply 함수
 * map 함수와 비슷한 역할을 하는 함수
 <pre><code>
 # email 컬럼에서 메일의 도메인만 가져와서 새로운 domain 컬럼을 생성
