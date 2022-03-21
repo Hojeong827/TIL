@@ -136,3 +136,147 @@ df[["id", "name", "email"]]                         # list 타입으로 쓴 순�
 df.head(2)                                          # 위에서부터 2개를 출력
 df.tail(2)                                          # 밑에서부터 2개를 출력
 </code></pre>
+
+## Apply 홤수
+* map 함수와 비슷한 역할을 하는 함수
+<pre><code>
+# email 컬럼에서 메일의 도메인만 가져와서 새로운 domain 컬럼을 생성
+
+def domain(email):
+    return email.split("@")[1].split(".")[0]
+
+print(doamin(df.loc[0]["email"]))
+'gamil'
+
+print(df["email"].apply(domain))                # df["email"]에 domain 함수를 적용
+0   gamil
+1   daum
+2   naver
+
+df["domain"]=df["email"].apply(domain)          # df 에 도메인 column 이 추가가 되고 domain 값이 추가
+
+df["domain"] = df["email"].apply(lambda email: email.split("@")[1].split(".")[0])
+=> 함수 선언 없이 lambda를 이용하는 것도 가능
+</code></pre>
+
+## Append 함수
+* 데이터 프레임을 합치는 함수(세로로만 가능)
+* [reset_index](https://kongdols-room.tistory.com/123)
+<pre><code>
+df = pd.DataFrame([1, 2, 3])
+0   1
+1   2
+2   3
+df2 = pd.DataFrame([4, 5 6])
+0   1
+1   2
+2   2
+
+df3=df1.append(df2)             # 세로로 합쳐졌지만 인덱스도 그래도 합쳐진다
+0   1
+1   2
+2   3
+0   4
+1   5
+2   6
+
+# 인덱스 재정렬 : reset_index
+df3.reset_index(drop=True, inplace=True)        # drop은 인덱스로 세팅한 열을 DataFrame 내에서 삭제할지 여부를 묻는다
+                                                # inplace는 원본객체를 변경할지 여부를 묻는다
+</code></pre>
+
+## Concat 함수
+* row 나 column으로 데이터 프레임을 합칠 때 사용
+<pre><code>
+df = pd.DataFrame([1, 2, 3])
+df2 = pd.DataFrame([4, 5 6])
+
+df3 = pd.concat([df, df2]).reset_index(drop=True)
+0   1
+1   2
+2   3
+3   4
+4   5
+5   6
+
+pd.concat([df3, df1], axis=1)                 # 가로로 합치기
+0   1   1
+1   2   2
+2   3   3
+3   4   NaN                                   # df1에는 값이 없기 때문
+4   5   NaN
+5   6   NaN                     
+
+pd.concat([df3, df1], axis=1, join"inner")    # inner는 교집합 outer는 위와 같음
+0   1   1
+1   2   2
+2   3   3
+</code></pre>
+
+## Group by 함수
+* 특정 컬럼의 중복되는 데이터를 합쳐서 새로운 데이터 프레임을 만드는 방법
+* [Groupby에 대한 자세한 설명](https://yganalyst.github.io/data_handling/Pd_13/)
+<pre><coce>
+datas = {
+    "number1":[1, 2, 3, 4, 5, 6],
+    "number2":[1, 2, 3, 1, 3, 1],
+}
+df=pd.DataFrame(datas)
+   number1     number2
+0      1           1
+1      2           2
+2      3           2
+3      4           1
+4      5           3
+5      6           1
+
+1. size()
+df.groupby("number2").size()           # 중복된 개수 출력
+number2
+   1      3
+   2      1
+   3      2
+
+result = df.groupby("number2").size().reset_index(name="count")      
+=>중복된 개수를 출력하는 column의 이름 지정
+    number2     count
+0       1         3
+1       2         1
+2       3         2
+
+# sort_values : 설정한 컬럼으로 데이터 프레임을 정렬
+result_df.sort_values(["count"], ascending=False)       # ascending : 오름차순 or 내림차순
+    number2     count
+0       1         3
+2       3         2
+1       2         1                                     # 또한 inplace도 적용가능하다
+
+2. agg() : 여러개의 열에 여러가지 함수를 적용 가능
+df.groupby("number2").agg("min").reset_index()          # 최소값
+df.groupby("number2").agg("max").reset_index()          # 최대값
+df.groupby("number2").agg("mean").reset_index()         # 평균
+</code></pre>
+
+## Merge 함수 = sql(join)
+* 두개 이상의 데이터 프레임을 합쳐서 결과를 출력하는 방법
+[merge에대한 추가적인 설명](https://yganalyst.github.io/data_handling/Pd_12)
+<pre><code>
+datas1 = {
+    "num":[1, 2, 3],
+    "city":["seoul", "busan", "daejeon"],
+}
+df1=pd.DataFrame(datas1)
+
+datas2 = {
+    "num":[1, 2, 3],
+    "population":[3000, 2000, 1500],
+}
+df2=pd.DataFrame(datas2)
+
+result = pd.merge(df1, df2)
+    num      city     population
+0    1      seoul       3000
+1    2      busan       2000
+2    3      daejeon     1500
+
+</code></pre>
