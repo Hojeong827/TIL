@@ -230,7 +230,7 @@ df=pd.DataFrame(datas)
 4      5           3
 5      6           1
 
-1. size()
+1. size()                                               # Series 형식 
 df.groupby("number2").size()           # 중복된 개수 출력
 number2
    1      3
@@ -251,7 +251,7 @@ result_df.sort_values(["count"], ascending=False)       # ascending : 오름차�
 2       3         2
 1       2         1                                     # 또한 inplace도 적용가능하다
 
-2. agg() : 여러개의 열에 여러가지 함수를 적용 가능
+2. agg() : 여러개의 열에 여러가지 함수를 적용 가능         # 데이터 프레임 형식
 df.groupby("number2").agg("min").reset_index()          # 최소값
 df.groupby("number2").agg("max").reset_index()          # 최대값
 df.groupby("number2").agg("mean").reset_index()         # 평균
@@ -279,4 +279,6 @@ result = pd.merge(df1, df2)
 1    2      busan       2000
 2    3      daejeon     1500
 
+# filna : NaN을 특정 데이터로 채워줌
+result.fillna(value=0, inplace=True)        # merge하고 난후에 NaN데이터를 0으로 바꿔줌
 </code></pre>
