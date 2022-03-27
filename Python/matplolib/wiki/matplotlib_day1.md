@@ -35,6 +35,7 @@ import numpy as np
 fig = plt.figure(figsize=(7, 7), facecolor='linen')           # 빈 figure생성
 ax = fig.add_subplot()                                        # figure 안에서 ax라는 object를 할당 받음
 ax = fig.add_subplot(111)                                     # ax = fig.add_subplot(1, 1, 1) 과 같은 표현
+ax = fig.add_subplot(111, facecolor = 'r')                    # facecolor 를 이용하여 ax의 색깔을 정할 수 있다.
 ```
 **fig.add_subplot()** 을 하게 되면 figure안에 그림이 생기게 되는데 우리는 이제 이 그림을 이용하여 그래프를 그릴 것이다.   
 figure 안에서 ax라는 object를 할당 받아 lineplot, scatterplot, histogram 등등의 여러 그래프를 그릴 수 있다.   
@@ -49,9 +50,30 @@ ax2 = fig.add_subplot(222)                  # (1,2)의 위치
 ax3 = fig.add_subplot(223)                  # (2,1)의 위치
 ax3 = fig.add_subplot(224)                  # (2,2)의 위치
 ```
+만일 2개의 작은 그래프와 하나의 큰 그래프를 그리고 싶을 때 쓰는 방법이 있다.
+```py
+ax1 = fig.add_subplot(221)                  # 2 x 2 에서 1번째 위치에 그래프를 그림
+ax2 = fig.add_subplot(222)                  # 2 x 2 에서 2번째 위치에 그래프를 그림
+ax3 = fig.add_subplot(212)                  # 2 x 1 에서 2번째 위치에 그래프를 그림
+```
+이런식으로 코드를 작성하게 되면 ax1 과 ax2는 앞의 예시와 같이 (1,1)과 (1,2)의 위치에 그림이 들어가게 된다.   
+하지만 ax3 의 경우에는 2 x 1의 공간으로 할당되어 (2,1)과 (2,2)의 공간을 합하여 그래프가 나타내지게 된다.
 
 ## 4. plt.subplots(Making Fig and Axes Simultaneously)
+앞에서 배운것에 따르면 figure와 ax를 따로따로 선언하여서 그래프를 그리는 방식을 배웠다. 이를 한꺼번에 선언할 수 있는 함수가 바로 **subplots** 이다.
+```py
+import matplotlib.pyplot as plt
+import numpy as np
 
+fig, axes = plt.subplots(nrows = 2, ncols = 1)          # figure와 2 x 1 의 axes 를 만드는 함수
+fig, axes = plt.subplots(2, 1)                          # 위와 같은 표현이다.(생략 가능)
+```
+subplots 를 이용하면 한번에 figure 와 2행(nrows = 2), 1열(ncols = 1)의 axes를 만들 수 있다. 이렇게 만들어진 axes에 그래프를 출력하는 방법은 다음과 같다.
+```py
+axes[0].plot([2, 5, 10])                                # axes의 1번째 위치
+axes[1].plot([3, 9, 4])                                 # axes의 2번째 위치
+```
+이는 python에서 array를 다루는 방식과 유사하다. 
 ## 5. plt.subplot2grid(More Complex Arrangement)
 
 ## 6. Practice
