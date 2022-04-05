@@ -70,10 +70,11 @@ fig, axes = plt.subplots(2, 1)                          # 위와 같은 표현�
 ```
 subplots 를 이용하면 한번에 figure 와 2행(nrows = 2), 1열(ncols = 1)의 axes를 만들 수 있다. 이렇게 만들어진 axes에 그래프를 출력하는 방법은 다음과 같다.
 ```py
-axes[0].plot([2, 5, 10])                                # axes의 1번째 위치
-axes[1].plot([3, 9, 4])                                 # axes의 2번째 위치
+axes[0].plot([2, 5, 10])                                # axes의 1번째 위치에 2, 5, 10을 출력
+axes[1].plot([3, 9, 4])                                 # axes의 2번째 위치에 3, 9, 4를 출력
 ```
 이는 python에서 array를 다루는 방식과 유사하다. 
+
 ## 5. plt.subplot2grid(More Complex Arrangement)
 
 ## 6. Practice
