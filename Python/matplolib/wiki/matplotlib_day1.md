@@ -163,6 +163,48 @@ ax4 = plt.subplot2grid((3, 3), (0, 2), rowspan=3, fig = fig)
 # 3 x 3 의 공간에서 (0, 2)의 위치에서 시작하여 row방향으로 3개의 공간을 할당 : 즉 (0, 2) ~ (2, 2)이 합쳐진 공간
 ```
 
-## 6. Practice
+## 6. [Practice](https://github.com/Hojeong827/TIL/blob/main/Python/matplolib/code/exercise1-01.py)
 
 ## 7. fig.add_axes(Arbitrary Locations and Sizes of Axes)
+이 함수는 각각의 axes의 위치및 크기를 지정하는 함수이다. 이 함수를 이용하면 ax안에 또다른 ax를 집어 넣거나 겹치게 하는 등 자유자재로 위치를 지정할 수 있다.
+```
+add_axes(rect, projection=None, polar=False, **kwargs)
+Parameters
+1. rect (sequence of float) 
+: The dimensions [left, bottom, width, height] of the new Axes. All quantities are in fractions of figure width and height.
+
+2. projection {None, 'aitoff', 'hammer', 'lambert', 'mollweide', 'polar', 'rectilinear', str}, optional 
+: The projection type of the Axes. str is the name of a custom projection, see projections. The default None results in a 'rectilinear' projection.
+
+3. polar (bool, default: False) 
+: If True, equivalent to projection='polar'.
+
+4. axes_class (subclass type of Axes, optional) 
+: The axes.Axes subclass that is instantiated. This parameter is incompatible with projection and polar. See axisartist for examples.
+
+5. sharex, sharey (Axes, optional) 
+: Share the x or y axis with sharex and/or sharey. The axis will have the same limits, ticks, and scale as the axis of the shared axes.
+
+6. label (str) : A label for the returned Axes.
+```
+fig.add_axes의 parameter는 위와 같다. rect parameter의 left, bottom이 (0, 0)이면 기본적으로 왼쪽의 아래, 즉 figure의 왼쪽 아래의 모서리를 의미한다. (0.1, 0.1) 이면 왼쪽에서부터 0.1, 아래쪽에서부터 0.1을 의미한다. width와 height는 ax의 가로 세로 길이를 의미한다. 이를 활용하는 방법은 아래와 같다.
+```py
+import matplotlib.pyplot as plt
+import numpy as np
+
+fig = plt.figure(figsize=(7, 7), facecolor='linen')
+
+ax1 = fig.add_axes([0.1, 0.1, 0.5, 0.5])
+ax2 = fig.add_axes([0.7, 0.1, 0.2, 0.5])
+ax3 = fig.add_axes([0.1, 0.7, 0.8, 0.2])
+
+또는
+
+rect1 = [0.1, 0.1, 0.5, 0.5]
+rect2 = [0.7, 0.1, 0.2, 0.5]
+rect3 = [0.1, 0.7, 0.8, 0.2]
+
+ax1 = fig.add_axes(rect1)
+ax2 = fig.add_axes(rect2)
+ax3 = fig.add_axes(rect3)
+```
