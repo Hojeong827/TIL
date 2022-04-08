@@ -43,6 +43,7 @@ ax14 = plt.subplot2grid((5, 4), (4, 3))
 plt.show()
 """
 
+"""
 fig = plt.figure(figsize=(20,20))
 axes = np.empty(shape=(0,))                         # axes 를 np.array로 만들어서 계속해서 추가하는 방식을 통해 반복되는 코드를 줄일 수 있다.
 axes = np.append(axes, plt.subplot2grid((5, 4), (0, 0), rowspan=2, colspan=2, fig=fig))
@@ -51,4 +52,22 @@ axes = np.append(axes, plt.subplot2grid((5, 4), (0, 2), rowspan=2, colspan=2, fi
 for r_idx in range(2, 5):
     for c_idx in range(4):
         axes = np.append(axes, plt.subplot2grid((5, 4), (r_idx, c_idx)))
+plt.show()
+"""
+
+left, bottom = 0.1, 0.1
+spacing = 0.005
+
+width1, height1 = 0.65, 0.65
+width2 = 1 - (2 * left + width1 + spacing)
+height2 = 1 - (2 * bottom + height1 + spacing)
+
+rect1 = [left, bottom, width1, height1]
+rect2 = [left, bottom+height1+spacing, width1, height2]
+rect3 = [left+width1+spacing, bottom, width2, height1]
+
+fig = plt.figure(figsize=(7,7))
+ax1 = fig.add_axes(rect1)
+ax2 = fig.add_axes(rect2)
+ax3 = fig.add_axes(rect3)
 plt.show()
