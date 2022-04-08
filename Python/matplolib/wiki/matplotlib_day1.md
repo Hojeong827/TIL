@@ -67,15 +67,101 @@ import numpy as np
 
 fig, axes = plt.subplots(nrows = 2, ncols = 1)          # figure와 2 x 1 의 axes 를 만드는 함수
 fig, axes = plt.subplots(2, 1)                          # 위와 같은 표현이다.(생략 가능)
+fig, (ax1, ax2) = plt.subplots(2,1)                     # 언패킹을 통해 이러한 표현으로 ax1과 ax2로 미리 할당이 가능하다
 ```
 subplots 를 이용하면 한번에 figure 와 2행(nrows = 2), 1열(ncols = 1)의 axes를 만들 수 있다. 이렇게 만들어진 axes에 그래프를 출력하는 방법은 다음과 같다.
 ```py
 axes[0].plot([2, 5, 10])                                # axes의 1번째 위치에 2, 5, 10을 출력
 axes[1].plot([3, 9, 4])                                 # axes의 2번째 위치에 3, 9, 4를 출력
 ```
-이는 python에서 array를 다루는 방식과 유사하다. 
+이는 python에서 array를 다루는 방식과 유사하다.   
+또한 plt.subplots를 이용해서 2D figure와 axes를 출력할 수 있는데 
+```py
+fig, axes = plt.subplots(2, 2, figsize=(7, 7), facecolor='linen')       # figure에 2 x 2 의 axes를 만듬
+print(axes[0])                                                          # figure의 첫번째 줄의 axes를 모두 출력
+print(axes[0, 1])                                                       # figure의 첫번째 줄의 2번째 axes를 출력
+```
+이러한 방식을 이용하면 for 문을 돌리기 힘들어지기 때문에 아래와 같은 방식을 이용하여서 2D figure를 만들어 본다.
+```py
+# case 1
+test_np = np.array([[1, 2], [3,4]])            # axes가 numpy의 array의 형식과 같기 때문에 test_np를 axes라 가정
+
+for val in test_np:
+    print(val)                                 # 일반적으로는 [1, 2], [3, 4] 가 출력됨
+
+for val in test_np.flat:                       # flat 을 쓰게 되면 각 row의 원소들을 차례로 접근하게 되어 1, 2, 3, 4로 출력
+    print(val)                                 # 또한 각 row의 구분이 없어져 하나의 줄로 (1D array)로 바뀌게 된다.
+
+-----------------------------------------------------------------------------------------------------------------------
+# case 2
+idx = 0
+test_list = [10, 11, 12, 13]
+
+for val in test_list:                           # index값이 필요하지만 idx += 1과 같은 코드가 필요
+    print(idx, val)
+    idx += 1
+
+for idx, val in enumerate(test_list):           # enumerate를 이용하면 자동으로 idx값이 증가하게 된다.
+    print(idx, val)
+
+-----------------------------------------------------------------------------------------------------------------------
+# case 3 (case1 과 case2의 응용)
+fig, axes = plt.subplots(nrows = 2, ncols = 2, figsize=(7, 7), facecolor='linen')
+
+for ax_idx, ax in enumerate(axes.flat):
+    print(ax_idx, ax)                           # index와 각각의 axes를 출력 또는 활용할 수 있게 된다.
+```
+plt.subplots를 이용하면 axes의 접근이 용이하지만 add_subplot에서 처럼 다양한 형태와 크기의 axes를 그리는 것은 힘들다.   
 
 ## 5. plt.subplot2grid(More Complex Arrangement)
+위에서 배운것처럼 plt.subplot은 axes의 접근은 용이한 대신 다양한 형태와 크기의 axes를 그리는 데에는 한계가 있다는 것이 분명했다.   
+이러한 단점을 극복하기 위해서 우리가 쓰게되는 것이 **plt.subplot2grid**이다.
+```
+matplotlib.pyplot.subplot2grid(shape, loc, rowspan=1, colspan=1, fig=None, **kwargs)   
+=> Create a subplot at a specific location inside a regular grid
+* Parameters   
+1. shape(int, int) : Number of rows and of columns of the grid in which to place axis.   
+2. loc(int, int) : Row number and column number of the axis location within the grid.   
+3. rowspanint, default = 1 : Number of rows for the axis to span downwards.   
+4. colspanint, default = 1 : Number of columns for the axis to span to the right.   
+5. figFigure, optional : Figure to place the subplot in. Defaults to the current figure.   
+6. **kwargs : Additional keyword arguments are handed to add_subplot.   
+```
+plt.subplot2grid의 parameter는 위와 같이 나타내지며 이를 활용하는 방법은 아래와 같다.
+```py
+# parameter들을 사용하지 않은 일반적인 예시
+import matplolib.pyplot as plt
+import numpy as np
+
+fig = plt.figure(figsige = (7,7), facecolor='linen')
+
+ax1 = plt.subplot2grid((2, 1), (0, 0), fig = fig)           # fig 안에 2 x 1 크기에 (0, 0)의 위치에 ax1을 할당
+ax1 = plt.subplot2grid((2, 1), (1, 0), fig = fig)           # fig 안에 2 x 1 크기에 (1, 0)의 위치에 ax2를 할당
+                                                            # 일반적으로 쓰이는 add_subplot이나 plt.subplot과 비슷하다.
+------------------------------------------------------------------------------------------------------------------------
+# parameter들을 사용했을 때의 예시, case1
+import matplolib.pyplot as plt
+import numpy as np
+
+fig = plt.figure(figsige = (7,7), facecolor='linen')
+
+ax1 = plt.subplot2grid((3, 3), (0, 0), colspan=2, fig = fig)    
+# 3 x 3 의 공간에서 (0, 0)의 위치에서 시작하여 col방향으로 2개의 공간을 할당 : 즉 (0, 0) 과 (0, 1)이 합쳐진 공간
+ax2 = plt.subplot2grid((3, 3), (1, 0), colspan=3, fig = fig)    
+# 3 x 3 의 공간에서 (1, 0)의 위치에서 시작하여 col방향으로 3개의 공간을 할당 : 즉 (1, 0) ~ (1, 2)이 합쳐진 공간
+------------------------------------------------------------------------------------------------------------------------
+# parameter들을 사용했을 때의 예시, case1
+import matplolib.pyplot as plt
+import numpy as np
+
+fig = plt.figure(figsige = (7,7), facecolor='linen')
+
+ax1 = plt.subplot2grid((3, 3), (0, 0), colspan=2, fig = fig)    
+ax2 = plt.subplot2grid((3, 3), (1, 0), colspan=2, fig = fig)
+ax3 = plt.subplot2grid((3, 3), (2, 0), colspan=2, fig = fig)
+ax4 = plt.subplot2grid((3, 3), (0, 2), rowspan=3, fig = fig)
+# 3 x 3 의 공간에서 (0, 2)의 위치에서 시작하여 row방향으로 3개의 공간을 할당 : 즉 (0, 2) ~ (2, 2)이 합쳐진 공간
+```
 
 ## 6. Practice
 
