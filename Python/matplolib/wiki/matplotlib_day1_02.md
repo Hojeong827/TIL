@@ -44,7 +44,34 @@ pad를 이용하여 간격을 조절하면 ax, title, label이 모두 묶여서 
 pad의 크기가 클수록 간격이 넓어지게 되는데 간격이 넓어질수록 ax, title, label의 크기도 작아지게 된다. 이를 유의하여야 한다.   
 
 ## 2.fig.subplots_adjust(More Customized Layout)
+위와 같은 명령어를 쓰면 위의 fig.tight_layout에서 처럼 모든 간격이 일정한 것이 아닌 자신이 원하는 구간의 간격을 원하는 대로 조절할 수 있다는 장점이 있다.   
+Usage와 parameters는 다음과 같다.   
+* Usage : **fig.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None)**   
+* Parameters   
+1. positional argument   
+leftfloat, optional : The position of the left edge of the subplots, as a fraction of the figure width.   
+rightfloat, optional : The position of the right edge of the subplots, as a fraction of the figure width.   
+bottomfloat, optional : The position of the bottom edge of the subplots, as a fraction of the figure height.   
+topfloat, optional : The position of the top edge of the subplots, as a fraction of the figure height.   
+2. spacing argument   
+wspacefloat, optional : The width of the padding between subplots, as a fraction of the average Axes width.   
+hspacefloat, optional : The height of the padding between subplots, as a fraction of the average Axes height.   
+```py
+import matplotlib.pyplot as plt
 
+fig, axes = plt.subplots(2, 2, figsize=(10, 10))
+
+for ax_idx, ax in enumerate(axes.flat):
+    ax.get_xaxis().set_visible(False)           # x축의 눈금을 없앰
+    ax.get_yaxis().set_visible(False)           # y축의 눈금을 없앰
+
+# axes와 figure 사이의 위, 아래, 왼쪽, 오른쪽의 간격을 설정
+fig.subplots_adjust(bottom=0.05, top=0.9, left=0.05, right=0.8)
+# axex간 위아래 사이의 간격을 설정 (height)
+fig.subplots_adjust(hspace=0.05)
+# axex간 좌우 사이의 간격을 설정 (width))
+fig.subplots_adjust(wspace=0.05)
+```
 ## 3.fig.subplots_adjuust(Practice)
 
 ## 4.Axis Sharing
