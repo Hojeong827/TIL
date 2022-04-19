@@ -73,7 +73,7 @@ fig.subplots_adjust(hspace=0.05)
 fig.subplots_adjust(wspace=0.05)
 ```
 ## 3.fig.subplots_adjuust(Practice)
-
+업데이트 예정
 ## 4.Axis Sharing
 
 ## 5.Axis Sharing(Practice)
