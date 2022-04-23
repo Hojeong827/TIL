@@ -73,7 +73,8 @@ fig.subplots_adjust(hspace=0.05)
 fig.subplots_adjust(wspace=0.05)
 ```
 ## 3.fig.subplots_adjuust(Practice)
-업데이트 예정
+[exercise1-02_02](https://github.com/Hojeong827/TIL/blob/main/Python/matplolib/code/exercise1-02_02.py)
+
 ## 4.Axis Sharing
 
 ## 5.Axis Sharing(Practice)
