@@ -76,7 +76,9 @@ fig.subplots_adjust(wspace=0.05)
 [exercise1-02_02](https://github.com/Hojeong827/TIL/blob/main/Python/matplolib/code/exercise1-02_02.py)
 
 ## 4.Axis Sharing
+* Method 1.
 
+* Method 2.
 ## 5.Axis Sharing(Practice)
 
 ## 6.ax.twinx(Different Y Values)
