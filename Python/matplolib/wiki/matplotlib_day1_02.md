@@ -125,7 +125,7 @@ for r_idx in range(n_row):
             else:
                 ax = fig.add_subplot(n_row, n_col, r_idx*n_row + c_idx +1, sharey=axes_row[0])
             axes_row = np.append(axes_row, ax)
-        axes = np.vstack((axes, axes_row)).reshape(1, -1)
+        axes = np.vstack((axes, axes_row))
     else:
         for c_idx in range(n_col):
             if c_idx == 0:
@@ -133,7 +133,7 @@ for r_idx in range(n_row):
             else:
                 ax = fig.add_subplot(n_row, n_col, r_idx*n_row + c_idx +1, sharey=axes_row[0], sharex=axes[0, c_idx]   )
             axes_row = np.append(axes_row, ax)
-        axes = np.vstack((axes, axes_row)).reshape(1, -1)
+        axes = np.vstack((axes, axes_row))
 fig.tight_layout()
 
 axes[0, 0].set_ylim([0, 100])
@@ -143,10 +143,49 @@ axes[0, 0].set_xlim([0, 100])
 axes[0, 1].set_xlim([0, 200])
 axes[0, 2].set_xlim([0, 300])
 ```
-### Method 3.
-### Method 4.
+### Method 3. (Using plt.subplot2grid)
+세번째 방법으로는 plt.subplot2grid 에 있는 sharex, sharey를 이용하는 방법이다.
+```py
+import matplotlib.pyplot as plt
+
+fig = plt.figure(figsize=(7, 7))
+
+ax1_1 = plt.subplot2grid((2, 3), (0, 0), colspan=3, fig=fig)
+ax2_1 = plt.subplot2grid((2, 3), (1, 0), colspan=2, fig=fig, sharex=ax1_1)
+ax2_2 = plt.subplot2grid((2, 3), (1, 2), fig=fig, sharex=ax1_1)
+ax1_1.set_xlim([0, 100])
+fig.tight_layout()
+```
+세번째 방법도 위와 같은 방식으로 일일이 지정해야 하지만 그래프를 그리는데 더욱 자유도가 높으며 눈금이 사라지지 않는다.
+
+### Method 4. (Using fig.add_axes)
+네번째 방법으로는 fig.add_axes에 있는 sharex, sharey를 이용하는 방법이다.
+```py
+import matplotlib.pyplot as plt
+import numpy as np
+
+left, bottom = 0.1, 0.1
+spacing = 0.005
+
+width1, height1 = 0.65, 0.65
+width2 = 1 - (2 * left + width1 + spacing)
+height2 = 1 - (2 * bottom + height1 + spacing)
+
+rect1 = [left, bottom, width1, height1]
+rect2 = [left, bottom+height1+spacing, width1, height2]
+rect3 = [left+width1+spacing, bottom, width2, height1]
+
+fig = plt.figure(figsize=(7,7))
+ax1 = fig.add_axes(rect1)
+ax2 = fig.add_axes(rect2, sharex=ax1)
+ax3 = fig.add_axes(rect3, sharey=ax1)
+
+ax1.set_xlim([0, 100])
+ax1.set_ylim([0, 200])
+```
 
 ## 5.Axis Sharing(Practice)
+[exercise1-02_04.py]()
 
 ## 6.ax.twinx(Different Y Values)
 
