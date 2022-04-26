@@ -76,9 +76,76 @@ fig.subplots_adjust(wspace=0.05)
 [exercise1-02_02](https://github.com/Hojeong827/TIL/blob/main/Python/matplolib/code/exercise1-02_02.py)
 
 ## 4.Axis Sharing
-* Method 1.
+앞에서 배운 내용을 이용하면 내가 원하는 크기와 위치, 그리고 모양을 설정하여서 axes를 그리는 방법에 대하여 배워보았다.    
+그러나 내가 원하는 모양으로 axes를 그려도 x축과 y축이 불필요하게 반복되어서 이를 간단하게 그리는 방법에 대해서 배워본다.   
+* ax.set_xlim & ax.set_ylim   
+이 명령어는 x축과 y축의 기준점을 잡는 간단한 명령어로서 **ax.set_xlim([-10, 10])** 이라고 명령하면 x축은 -10부터 10까지 나타나게 되고 y축도 마찬가지로 **ax.set_ylim([-10, 10])**이라고 명령하면 -10부터 10까지 나타내지게 된다. 여러 axes들중 하나를 선택해서 설정하고 싶다면 **axes[0,0].set_xlim([-10, 10])**으로 명령하면 된다.
 
-* Method 2.
+기본적으로 Axis Sharing에는 4가지 방법이 있는데 하나부터 알아보자.
+### Method 1. (Using subplots)
+첫번째 방법으로는 subplots에 있는 argument중 sharex와 sharey를 이용하는 방법이 있다.
+```py
+import matplotlib.pyplot as plt
+
+fig, axes = plt.subplots(2, 2, figsize=(7, 7))          # 기본적으로 subplots를 이요하면 2 x 2크기의 axes를 생성
+
+fig, axes = plt.subplots(2, 2, figsize=(7, 7), sharex=True)     # 4개의 axes 모두가 x축을 공유하게 된다.
+fig, axes = plt.subplots(2, 2, figsize=(7, 7), sharey=True)     # 4개의 axes 모두가 y축을 공유하게 된다.
+fig, axes = plt.subplots(2, 2, figsize=(7, 7), sharex=True, sharey=True)   # 4개의 axes 모두가 x,y축을 공유하게 된다.
+```
+이 방법의 장점이자 단점으로는 모든 axes들의 x축과 y축이 공유되기 때문에 한꺼번에 지정하기에는 편하지만 내가 원하는 부분만 공유하기에는, 즉 구체적으로 설정하기에는 적합하지 않다. 또한 맨 바같의 축(눈금)을 제외한 공유된 축(눈금)은 사라지게 된다.   
+그러나 sharex와 sharey를 썼을 때 첫번째 ax의 x축과 y축의 범위를 설정해주기만 하면 모든 axes들의 x축과 y축의 범위가 같이 설정되는 것 또한 장점이다.
+
+### Method 2. (Using fig.add_subplot)
+두번째 방법으로는 fig.add_subplot에 있는 sharex와 share를 이용하는 방법이다.
+```py
+import matplotlib.pyplot as plt
+
+fig = plt.figure(figsize=(7, 7))            # fig를 만들고
+ax1 = fig.add_subplot(211)                  # ax1을 만든뒤
+ax2 = fig.add_subplot(212, sharex=ax1)      # ax2를 만들어 ax1의 x축을 공유하게 한다. (틱레이블(눈금) 은 사라지지 않음)
+ax2.set_xlim([0, 100])
+```
+이 방법은 method 1과 달리 자유도가 매우 높다는 것이 장점이다. 하지만 하나하나 다 설정해줘야하기 때문에 코드의 길이가 길어질 수 밖에 없고 틱 레이블(눈금)이 사라지지 않는다는 것이 단점이다.   
+이를 반복문을 이용하여 나타내는 예제는 아래와 같다.
+```py
+import matplotlib.pyplot as plt
+import numpy as np
+
+fig = plt.figure(figsize=(10,10))
+
+n_row, n_col = 3, 3
+axes = np.empty(shape=(0,3))
+for r_idx in range(n_row):
+    axes_row = np.empty(shape=(0,))
+    if r_idx == 0:
+        for c_idx in range(n_col):
+            if c_idx == 0:
+                ax = fig.add_subplot(n_row, n_col, r_idx*n_row + c_idx + 1)
+            else:
+                ax = fig.add_subplot(n_row, n_col, r_idx*n_row + c_idx +1, sharey=axes_row[0])
+            axes_row = np.append(axes_row, ax)
+        axes = np.vstack((axes, axes_row)).reshape(1, -1)
+    else:
+        for c_idx in range(n_col):
+            if c_idx == 0:
+                ax = fig.add_subplot(n_row, n_col, r_idx*n_row + c_idx + 1, sharex=axes[0, c_idx])
+            else:
+                ax = fig.add_subplot(n_row, n_col, r_idx*n_row + c_idx +1, sharey=axes_row[0], sharex=axes[0, c_idx]   )
+            axes_row = np.append(axes_row, ax)
+        axes = np.vstack((axes, axes_row)).reshape(1, -1)
+fig.tight_layout()
+
+axes[0, 0].set_ylim([0, 100])
+axes[1, 0].set_ylim([0, 200])
+axes[2, 0].set_ylim([0, 300])
+axes[0, 0].set_xlim([0, 100])
+axes[0, 1].set_xlim([0, 200])
+axes[0, 2].set_xlim([0, 300])
+```
+### Method 3.
+### Method 4.
+
 ## 5.Axis Sharing(Practice)
 
 ## 6.ax.twinx(Different Y Values)
