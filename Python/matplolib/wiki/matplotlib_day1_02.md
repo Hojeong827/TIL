@@ -185,8 +185,49 @@ ax1.set_ylim([0, 200])
 ```
 
 ## 5.Axis Sharing(Practice)
-[exercise1-02_04.py]()
+[exercise1-02_04.py](https://github.com/Hojeong827/TIL/blob/main/Python/matplolib/code/exercise1-02_04.py)
 
 ## 6.ax.twinx(Different Y Values)
+두개의 그래프를 하나의 ax 안에서 볼 때 scale 또는 dimension의 차이가 너무 커서 다른 틱 레이블(눈금)이 필요할 때 쓰는 명령어이다.   
+**twinx** 는 x축을 공유할 때 쓰는 명령어이고 **twiny** 는 y축을 공유할 때 쓰는 명령어지만 주로 twinx를 많이 쓴다.  
+```py
+import matplotlib.pyplot as plt
+import numpy as np
 
+PI = np.pi
+t = np.linspace(0.01, 5*PI, 100)
+sin = np.sin(t)                     # sin 함수
+exp = np.exp(5)                     # log 함수
+
+fig.plt.figure(figsize=(10, 7))
+ax1 = fig,add_subplot()
+
+ax1.plot(t, sin)                    # sin 함수
+ax1.plot(t. exp)                    # log 함수
+
+# 문제점 발생 : log와 sin함수의 scale차이가 너무 커서 sin함수가 직선으로 나타내지고 log함수만 정상적으로 보이게 된다.
+
+fig = plt.figure(figsize=(10, 7))
+ax1 = fig.add_subplot()
+ax1. plot(t, sin)
+
+ax2 = ax1.twinx()           # ax2가 ax1과 공유한다라는 뜻 (x축이 공유된다)
+ax2. plot(t, exp)           # 두개의 ax가 존재하지만 twinx라는 명령어를 통해 하나의 ax에 출력하게 된다. 
+                            # 하지만 scale은 유지되어야하기 때문에 twinx를 명령받은 ax2는 오른쪽에 또 다른 틱 레이블이 생기게 된다.
+```
 ## 7.ax.set_yscale(Axis Scale)
+데이터간의 특징을 시각적으로 보기 위해서 그래프를 그리는 것인데 데이터 값들이 서로 차이가 너무 크면 시각적으로 보기 불편해 지기 때문에 이런 데이터 값의 범위를 설정하기 위해서 쓰는 명령어 이다.
+```py
+import matplotlib.pyplot as plt
+import numpy as np
+
+t = np.linspace(0, 3, 300)
+exp = np.exp(t)
+
+fig, ax = plt.subplots(figsize=(7, 7))
+ax.plot(t, exp)                         # scailing 을 하지 않아서 그래프의 일부분만 표현됨
+
+fig, ax = plt.subplots(figsize=(7, 7))
+ax.set_yscale('log')
+ax.plot(t, exp)                         # log 로 scailing 하여서 축의 값들이 10의 지수로 표현됨
+```
