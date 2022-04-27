@@ -172,4 +172,4 @@ ax.text(x=m_idx+0.5, y_mval+0.1, s=m_string, fontdict = m_font_dict)
 
 ## 7. Title Exercise
 [exercise1-03_02.py](https://github.com/Hojeong827/TIL/blob/main/Python/matplolib/code/exercise1-03_02.py)   
-[exercise1-03_03.py](https://github.com/Hojeong827/TIL/blob/main/Python/matplolib/code/exercise1-03_03.py)
+[exercise1-03_03.py](https://github.com/Hojeong827/TIL/blob/main/Python/matplolib/code/exercise1-03_03.py)   
