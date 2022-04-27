@@ -62,6 +62,8 @@ ax.text(x=0, y=0, s="Hello", fontsize=30)           # x, y가 (0, 0)인 위치�
 ax.text(x=0.5, y=0, s="Hello2", fontsize=30)        # x, y가 (0.5, 0)인 위치에 Hello2라는 글자를 삽입
 ax.text(x=0.5, y=-0.5, s="Hello3", fontsize=30)     # x, y가 (0.5, -0.5)인 위치에 Hello3라는 글자를 삽입
 ```
+![1](https://github.com/Hojeong827/TIL/blob/main/Python/matplolib/image/1.png)
+
 이 **ax.text()** 명령어를 이용하여 text alignment, 즉 text의 위치를 조정을 할 수가 있다.   
 바로 text명령어 안의 argument인 horizontal alignment와 vertical alignment를 사용하는 것이다.   
 각각 horizontal alignment는 left, center, right, 그리고 vertical alignment는 top, center, bottom의 위치로 설정할 수 있다.   
@@ -72,8 +74,10 @@ ax.text(x=0, y=0, va='center', ha='left', s="Hello", fontsize=30)
 # x와 y는 현재 -1에서 1까지 범위가 설정되어있다.
 # text의 위치는 x, y의 좌표가(0, 0)인 위치에 설정
 # 글자가 나타나는 기준점은 글자의 왼쪽 아래인 점이 기준으로 (0, 0)인 지점과 기준점이 일치한다.
+# 여기서 va='center'이고 ha='left' 라고 명령되면 글자가 (0, 0)에서 나타나지만
+# 글자의 세로축에서 중앙, 가로축에서 왼쪽으로 설정되었기 때문에 나타나는 위치가 바뀌게 된다.
 ```
-![1](https://github.com/Hojeong827/TIL/blob/main/Python/matplolib/1.png)
+![2](https://github.com/Hojeong827/TIL/blob/main/Python/matplolib/image/2.png)
 ## 4. Title Alignment
 
 ## 5. Text Properties
