@@ -78,8 +78,32 @@ ax.text(x=0, y=0, va='center', ha='left', s="Hello", fontsize=30)
 # 글자의 세로축에서 중앙, 가로축에서 왼쪽으로 설정되었기 때문에 나타나는 위치가 바뀌게 된다.
 ```
 ![2](https://github.com/Hojeong827/TIL/blob/main/Python/matplolib/image/2.png)
-## 4. Title Alignment
 
+## 4. Title Alignment
+3번 항목에서 다룬 것과 같이 fig 와 ax의 title에서도 ha와 va를 이용하여서 위치를 조정할 수 있다. 이를 예제를 이용하여서 다루어 보겠다.
+```py
+import matplotlib.pyplot as plt
+
+figsize = (7, 7)
+fig, ax = plt.subplots(figsize = ifgsize)
+
+title_bottom = 0.9
+fig.suptitle("Title", fontsize = 30, y = title_bottom, va = 'bottom')   
+# title_bottom=0.9인 위치에 Title이라는 글자의 아래를 기준으로 글자가 생성
+
+ax.set_title("Ax Title", fontsize=20)
+
+fig.subplots_adjust(top=title_bottom)
+# fig title이 생성된위치 바로 아래에 그래프가 그려지도록 명령
+
+fig.subplots_adjust(top=title_bottom-0.1)
+# ax title이 fig title과 겹치지 않게 조정
+-------------------------------------------------------------------------------------------------------------------
+# 이와 별개로 fig.subtitle과 ax.set_title 명령어를 쓸 때 x와 y의 위치가 음수가 될 수 있다.
+
+ax.set_title("Ax Title", fontsize = 20, y=-0.1)
+# 그래프의 아래에 title이 생성이 되게 된다.
+```
 ## 5. Text Properties
 
 ## 6. Font Dictionary
