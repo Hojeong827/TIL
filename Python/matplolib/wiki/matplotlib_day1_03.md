@@ -104,8 +104,69 @@ fig.subplots_adjust(top=title_bottom-0.1)
 ax.set_title("Ax Title", fontsize = 20, y=-0.1)
 # 그래프의 아래에 title이 생성이 되게 된다.
 ```
+
 ## 5. Text Properties
+Text Properties는 matplotlib 홈페이지에서 확인하기 바라며 주로 쓰이는 7가지 properties를 소개하겠다.
+* fontsize : 텍스트의 크기를 설정해주는 argument
+* fontfamily : 글씨체를 설정해주는 argument
+* fontweight : 텍스트의 굵기를 설정해주는 argument
+* alpha : 텍스트의 투명도를 설정해주는 argument
+* color : 텍스트의 색깔을 설정해주는 argument
+* bbox : 택스트를 강조하고 싶을 때 택스트 박스의 색깔이나 모양을 설정해주는 argument
+* rotation : 텍스트에 기울기를 설정해주는 argument
 
 ## 6. Font Dictionary
+axes들의 title, label, text들의 properties를 설정할 때 하나하나씩 바꾸는 것을 방지하기 위해서 이를 미리 설정해 놓아서 코드의 길이가 불필요하게 길어지는 것을 방지하고 수정도 쉽게 하기 위해서 만드는 작업.
+```py
+import matplotlib.pyplot as plt
+import numpy as np
 
+np,random.seed(0)
+fig. ax = plt.subplots(figsize = (7, 7))
+
+data = np.random.normal(0, 1, (10, ))
+M_idx, M_val = np.argmax(data), np.round(np.max(data), 2)
+m_idx, m_val = np.argmin(data), np.round(np.min(data), 2)
+
+M_string = "Max: ({}, {})".format(str(M_idx), str(M_val))
+m_string = "min: ({}, {})".format(str(m_idx), str(m_val))
+ax.plot(data)
+
+ax.set_title("Random Data", fontsize = 30, fontfamily = 'serif', color = 'darkblue', alpha = 0.8)
+ax.set_xlabel("Data Index", fontsize = 20, color = 'darkblue', alpha = 0.6)
+ax.set_ylabel("Data Value", fontsize = 20, color = 'darkblue', alpha = 0.6)
+ax.text(x=M_idx + 0.5, Y=M_val-0.1, s=M_string, fontsize = 20, color = 'r' bbox={'boxstyle': 'Round', 'color': 'r', 'alphs': 0.3})
+ax.text(x=m_idx + 0.5, Y=m_val+0.1, s=m_string, fontsize = 20, color = 'b' bbox={'boxstyle': 'Round', 'color': 'b', 'alphs': 0.3})
+# 코드의 내용이 일부 반복되고 이에 따라서 불필요하게 길어진 것을 확인할 수 있다.
+# 이를 Font Dictionary를 만들어 줄여보는 작업을 해보겠다.
+
+---------------------------------------------------------------------------------------------------------------------------
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+np,random.seed(0)
+fig. ax = plt.subplots(figsize = (7, 7))
+
+data = np.random.normal(0, 1, (10, ))
+M_idx, M_val = np.argmax(data), np.round(np.max(data), 2)
+m_idx, m_val = np.argmin(data), np.round(np.min(data), 2)
+
+M_string = "Max: ({}, {})".format(str(M_idx), str(M_val))
+m_string = "min: ({}, {})".format(str(m_idx), str(m_val))
+ax.plot(data)
+
+# define font dictionary
+title_font_dict = {'fontsize': 30, 'fontfamily': 'serif', 'color': 'darkblue', 'alpha': 0.8}
+xylabel_font_dict = {'fontsize': 20, 'fontfamily': 'monospace', 'color': 'darkblue', 'alpha':0.6}
+M_font_dict = {'fontsize': 20, 'color' :'r', 'bbox': {'boxstyle': 'Round', 'color': 'r', 'alpha': 0.3}}
+m_font_dict = {'fontsize': 20, 'color' :'b', 'bbox': {'boxstyle': 'Round', 'color': 'b', 'alpha': 0.3}}
+
+# font dictionary 를 이용하여서 text properties를 설정
+ax.set_title("Random Data", fontdict = title_font_dict)
+ax.set_xlabel("Data Index", fontdict = xylabel_font_dict)
+ax.set_ylabel("Data Value", fontdict = xylabel_font_dict)
+ax.text(x=M_idx+0.5, y=Mval-0.1, s=M_string, fontdict = M_font_dict)
+ax.text(x=m_idx+0.5, y_mval+0.1, s=m_string, fontdict = m_font_dict)
+```
 ## 7. Title Exercise
