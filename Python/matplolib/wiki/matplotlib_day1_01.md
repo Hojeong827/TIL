@@ -1,6 +1,6 @@
 # Matplotlib
 
-## Lecture 1-01
+## Lecture 1-01 : Making Figures and Axes
 
 ## 1. Figures & Axes
 - Figure : 그래프를 그리기 위한 창을 의미한다. Figure안에서 여러개의 Axes를 그릴 수 있다.   
