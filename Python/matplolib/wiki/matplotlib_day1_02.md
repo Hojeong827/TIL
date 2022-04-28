@@ -1,6 +1,6 @@
 # Matplotlib
 
-## Lecture 1-02
+## Lecture 1-02 : Axes Customizing
 
 ## 1.fig.tight_layout(Axes Layout Adjustment)
 Figrue 안의 Axes의 title과 label을 설정했을 때 서로 겹치는 문제를 해결하기 위함과 figure와 axes간의 간격 조절이 필요할 때 쓰는 명령어이다.    
