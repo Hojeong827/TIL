@@ -57,5 +57,26 @@ ax.tick_params(axis='x', which='minor', lenght=5, width=2)      # 작은 눈금 
 ```
 
 ## 3. ax.set_xticklabels
+x, y축의 눈금의 label을 설정해주는 명령어로써 주의점으로는 위의 ax.set_xticks의 설정들을 마치고 난 뒤 설정해주는 것이 권장사항이다.
+```py
+import matplotlib.pyplot as plt
+
+xticks = [i for in range(10)]
+xtick_labels = ['Class ' + str(i) for i in xticks]
+
+yticks = [i for in range(0, 101, 20)]
+ytick_labels = [str(i)+'%' for i in yticks]
+
+fig, ax = plt.subplots(figsize=(7, 7))
+ax.set_xticks(xticks)
+ax.set_xticklabels(xtick_labels)
+ax.tick_params(labelsize=20, rotation=60)
+
+ax.set_yticks(yticks)
+ax.set_yticklabels(ytick_labels)
+ax.tick_params(axis='y', labelsize=20)
+
+fig.subplots_adjust(bottom=0.2, left=0.15)
+```
 
 ## 4. Ticks and Ticklabels Practice
