@@ -80,3 +80,6 @@ fig.subplots_adjust(bottom=0.2, left=0.15)
 ```
 
 ## 4. Ticks and Ticklabels Practice
+[exercise1-04_02.py](https://github.com/Hojeong827/TIL/blob/main/Python/matplolib/code/exercise1-04_02.py)   
+[exercise1-04_03.py](https://github.com/Hojeong827/TIL/blob/main/Python/matplolib/code/exercise1-04_03.py)   
+[exercise1-04_04.py](https://github.com/Hojeong827/TIL/blob/main/Python/matplolib/code/exercise1-04_04.py)   
