@@ -33,3 +33,6 @@ ax.grid(axis='x', which='major', linewidth=1.5)             # major 축에 grid 
 ax.grid(axis='x', which='minor', linestyle=':')             # minor 축에 grid 생성
 ```
 ## 3. Grid Exercise
+[exercise1-05_01.py](https://github.com/Hojeong827/TIL/blob/main/Python/matplolib/code/exercise1-05_01.py)   
+[exercise1-05_02.py](https://github.com/Hojeong827/TIL/blob/main/Python/matplolib/code/exercise1-05_02.py)   
+[exercise1-05_03.py](https://github.com/Hojeong827/TIL/blob/main/Python/matplolib/code/exercise1-05_03.py)   
