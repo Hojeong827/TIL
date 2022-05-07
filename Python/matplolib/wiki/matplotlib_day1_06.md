@@ -10,7 +10,6 @@ import matplotlib.pyplot as plt
 fig, ax = plt.subplots(figsize = (10, 10))
 print(type(ax.spines))
 ```
-
 ## 2. spine.set_visible
 
 ## 3. spine.set_position(Basic Usage)
